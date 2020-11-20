@@ -1,0 +1,16 @@
+FROM python:3 as production
+
+# USER app
+ENV PYTHONUNBUFFERED 1
+# RUN mkdir /db
+#RUN chown app:app -R /db
+
+RUN mkdir /code
+WORKDIR /code
+COPY requirements.txt ./requirements.txt 
+RUN pip install -r requirements.txt
+
+COPY . .
+#COPY manage.py ./manage.py
+#COPY school_app ./school_app
+EXPOSE 8000
